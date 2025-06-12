@@ -20,7 +20,7 @@ const TelaInicial = () => {
     };
 
     updateDateTime();
-    const intervalId = setInterval(updateDateTime, 60 * 1000); 
+    const intervalId = setInterval(updateDateTime, 60 * 1000);
     return () => clearInterval(intervalId);
   }, []);
 
@@ -33,41 +33,41 @@ const TelaInicial = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white items-center justify-start pt-20">
+    
+    <SafeAreaView className="flex flex-col justify-between items-center w-[402px] h-[874px] py-[50px] px-[28px] bg-white">
       <StatusBar style="auto" />
 
-      <View className="items-center bg-white px-8 py-5 rounded-10px shadow-md border border-gray-200 w-4/5 mb-24"> 
-        <Text className="text-5xl font-bold text-gray-800"> 
+      <View className="flex justify-center items-center w-full gap-5 py-[20px] px-[0px] rounded-[10px] bg-white shadow-md shadow-black/50">
+        <Text className="text-5xl font-bold text-gray-800">
           {currentTime}
         </Text>
-        <Text className="text-lg text-gray-600"> 
+        <Text className="text-lg text-gray-600">
           {currentDate}
         </Text>
       </View>
 
-    <View className='w-[345px] h-[126px] flex-shrink-0 justify-center items-center'>
-      <TouchableOpacity
-        className="justify-center items-center bg-gray-50 rounded-[5px] shadow-md shadow-black/25 mb-5 p-5 w-[345px]" 
-        onPress={TabelaResistorNavegar}
-      >
-        <Text className="text-lg font-semibold text-gray-700"> 
-          Tabela de Resistência
-        </Text>
-      </TouchableOpacity>
+      <View className="flex flex-col items-center w-full gap-5">
+        <TouchableOpacity
+          className="flex w-[345px] py-[16px] px-[13px] justify-center items-center rounded-[5px] bg-white shadow-md shadow-black/50"
+          onPress={TabelaResistorNavegar}
+        >
+          <Text className="text-lg font-semibold text-gray-700">
+            Tabela de Resistência
+          </Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        className="justify-center items-center bg-gray-50 rounded-[5px] shadow-md shadow-black/25 mb-5 p-5 w-[345px]" 
-        onPress={ResistorCalculNavegar}
-      >
-        <Text className="text-lg font-semibold text-gray-700"> 
-          Resistor
-        </Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity
+          className="flex w-[345px] py-[16px] px-[13px] justify-center items-center rounded-[5px] bg-white shadow-md shadow-black/50"
+          onPress={ResistorCalculNavegar}
+        >
+          <Text className="text-lg font-semibold text-gray-700">
+            Resistor
+          </Text>
+        </TouchableOpacity>
+      </View>
+
     </SafeAreaView>
   );
 };
 
 export default TelaInicial;
-// TelaInicial.tsx
-// This file contains the main screen of the app, displaying the current time and date,
