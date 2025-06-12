@@ -1,13 +1,13 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import TelaInicial from './src/screens/TelaInicial';
+import './gesture-handler';
 import './global.css';
+
+import Routes from '~/routes/index.routes';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
   return (
-    <>
-      <TelaInicial />
-      <StatusBar style="auto" />
-    </>
+    <NavigationContainer>
+      <Routes />
+    </NavigationContainer>
   );
 }
