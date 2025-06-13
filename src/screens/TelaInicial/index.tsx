@@ -10,9 +10,14 @@ import {
   TouchableOpacity } 
 from 'react-native';
 
+import {GitPullRequest, Calculator} from 'lucide-react-native';
+
 import { StatusBar } from 'expo-status-bar';
 
+
+
 import {useNavigation, NavigationProp} from '@react-navigation/native';
+import CustomButton from '~/components/Buttons';
 
 export default function TelaInicial () {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -83,24 +88,20 @@ export default function TelaInicial () {
 
       <View className="flex flex-col items-center w-full gap-5">
 
-        <TouchableOpacity
-          className="flex w-[345px] py-[16px] px-[13px] justify-center items-center rounded-[5px] bg-white shadow-md shadow-black/50"
+        <CustomButton 
+          title={'Tabela de resistência'} 
           onPress={TabelaResistorNavegar}
-        >
-          navigation.navigate('TabelaResistor')
-          <Text className="text-lg font-semibold text-gray-700">
-            Tabela de Resistência
-          </Text>
-        </TouchableOpacity>
+          icon={<GitPullRequest color="gray" size={20} />}>
 
-        <TouchableOpacity
-          className="flex w-[345px] py-[16px] px-[13px] justify-center items-center rounded-[5px] bg-white shadow-md shadow-black/50"
+        </CustomButton>
+
+        <CustomButton 
+          title={'Resistor'} 
           onPress={ResistorCalculNavegar}
-        >
-          <Text className="text-lg font-semibold text-gray-700">
-            Resistor
-          </Text>
-        </TouchableOpacity>
+          icon={<Calculator color="gray" size={20} />}>
+
+        </CustomButton>
+        
         
       </View>
 
