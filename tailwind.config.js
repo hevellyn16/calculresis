@@ -9,6 +9,11 @@ module.exports = {
         ubuntu: ['Ubuntu_Regular'],
         
       },
+      colors: {
+        'resistor-brown': '#CC3300',
+        'resistor-gold': '#F4EE00',  
+        'resistor-silver': '#B4B4B4',
+      },
     },
   },
   plugins: [],
