@@ -231,7 +231,7 @@ export default function TabelaResistor() {
             </View>
 
             {/* Painel de Resultados da Resistência */}
-            <View className='self-stretch items-center justify-center bg-white rounded-[10px] shadow-md shadow-black/50 mb-0'> {/* <-- MUDANÇA AQUI: mb-0 */}
+            <View className='self-stretch items-center justify-center bg-white rounded-[10px] shadow-md shadow-black/50 mb-0'> 
                 <View className='self-stretch text-center justify-center text-black text-4xl font-bold font-ubuntu'>
                     <Text className="text-black text-center justify-center text-3xl font-bold mb-2">
                         {calculateResistance.resistance}
@@ -246,7 +246,7 @@ export default function TabelaResistor() {
             </View>
 
             {/* SelectedDisplay */}
-            <View className='self-stretch gap-[5px] mb-0'> {/* <-- MUDANÇA AQUI: mb-0 */}
+            <View className='self-stretch gap-[5px] mb-0'> 
                 <SelectedDisplay
                     band1={band1Data}
                     band2={band2Data}

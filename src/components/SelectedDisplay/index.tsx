@@ -70,8 +70,8 @@ export default function SelectedDisplay({
     const isActive = activeBand === bandType;
 
    const activeBorderClass = isActive
-  ? 'border-transparent border-[1px]' // Borda para ativa
-  : 'border-transparent border-[1px]'; // Borda para inativa AGORA TRANSPARENTE
+  ? 'border-transparent border-[1px]' // Usar border transparente para manter o tamanho do botão
+  : 'border-transparent border-[1px]';
 
     return (
       <TouchableOpacity
