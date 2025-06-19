@@ -2,8 +2,9 @@ import React from 'react';
 import {
     Text,
     View,
+    SafeAreaView,
+    TouchableOpacity,
 } from 'react-native';
-import ColorBlock from '~/components/ColorBlock';
 
 type Props = {
   tailwindColorClass?: string;
@@ -16,8 +17,7 @@ type Props = {
   tolerance?: string;
 
   onSelectValue?: (value:string, colorName:string, type:'d1'| 'd2' | 'multiplier' | 'tolerance') => void;
-  onPressLastColumn?:(colorName:string) => void;
-  
+  onBandPress?: (value: string | number | undefined, bandType: 'D1' | 'D2' | 'Multiplier' | 'Tolerance', bandColorClass: string) => void;
 }
 
 export default function ResistorColorRow({
@@ -29,6 +29,8 @@ export default function ResistorColorRow({
     borderColorClass,
     multiplier,
     tolerance,
+    onSelectValue,
+    onBandPress,
 }: Props) {
 
     const nameView = (colorName === undefined || colorName === null) 
@@ -87,22 +89,25 @@ export default function ResistorColorRow({
         </Text>
     </View>
 
-        <View className={`
+        <TouchableOpacity 
+    className={`
     flex items-center justify-center
     h-[30px] w-[33px]
     py-[6px] px-[7px]
     gap-[10px]
     ${D1View} rounded-[5px]
     border ${D1Border}
-    `}>
+    `}
+    onPress={() => onBandPress && onBandPress(colorValued1, 'D1', tailwindColorClass || 'bg-transparent')}>
         {colorValued1 !== undefined && colorValued1 !== null && (
                 <Text className={`font-bold text-xs ${textColorClass || 'text-white'}`}>
                     {colorValued1}
                 </Text>
             )}
-    </View>
+    </TouchableOpacity>
 
-        <View className={`
+        <TouchableOpacity 
+    className={`
     flex items-center justify-center
     h-[30px] w-[33px]
     py-[6px] px-[7px]
@@ -115,9 +120,10 @@ export default function ResistorColorRow({
                     {colorValued2}
                 </Text>
             )}
-    </View>
+    </TouchableOpacity>
 
-        <View className={`
+        <TouchableOpacity 
+    className={`
     flex items-center justify-center
     h-[30px] w-[58px]
     py-[6px] px-[7px]
@@ -130,22 +136,23 @@ export default function ResistorColorRow({
                     {multiplier}
                 </Text>
             )}
-    </View>
+    </TouchableOpacity>
   
-    <View className={`
-            flex items-center justify-center
-            h-[30px] w-[66px]
-            py-[6px] px-[7px]
-            gap-[10px]
-            ${toleranceView} rounded-[5px]
-            border ${toleranceBorder}
-        `}>
+    <TouchableOpacity 
+    className={`
+    flex items-center justify-center
+    h-[30px] w-[66px]
+    py-[6px] px-[7px]
+    gap-[10px]
+    ${toleranceView} rounded-[5px]
+    border ${toleranceBorder}
+    `}>
             {tolerance !== undefined && tolerance !== null && (
                 <Text className={`font-bold text-xs ${textColorClass || 'text-white'}`}>
                     {tolerance}
                 </Text>
             )}
-        </View>
+    </TouchableOpacity>
 
     </View>
   );

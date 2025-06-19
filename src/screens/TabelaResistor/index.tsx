@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Text,
     View,
@@ -8,6 +8,7 @@ import {
 import CustomButton from '~/components/Buttons';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 import {ChevronLeft} from 'lucide-react-native';
+import FasciaSelector from '~/components/FasciaSelector';
 import ResistorColorRow from '~/components/ResistorColorRow';
 
 export default function TabelaResistor() {
@@ -18,7 +19,6 @@ export default function TabelaResistor() {
             await navigation.navigate(routeName);
         } catch (error) {
             console.error('Erro ao navegar:', error);
-            // Optionally show a user-friendly message
         }
     }
 
@@ -27,7 +27,6 @@ export default function TabelaResistor() {
     }
 
     const handleColorPress = (color: string) => {
-        // Implement your logic for color selection
         console.log(`Color selected: ${color}`);
     };
 
