@@ -291,7 +291,7 @@ export default function TabelaResistor() {
                     colorValued3='1'
                     multiplier='10Ω'
                     tolerance='±1%'
-                    ppm={'100PPM/C'}
+                    ppm={'100'}
                     onBandPress={handleBandClickOnTable}
                     selectedBandCount={selectedBandCount}
                 />
@@ -302,7 +302,7 @@ export default function TabelaResistor() {
                     colorValued3={'2'}
                     multiplier='100Ω'
                     tolerance='±2%'
-                    ppm={'50PPM/C'}
+                    ppm={'50'}
                     onBandPress={handleBandClickOnTable}
                     selectedBandCount={selectedBandCount}
                 />
@@ -313,7 +313,7 @@ export default function TabelaResistor() {
                     colorValued2='3'
                     colorValued3={'3'}
                     multiplier='1KΩ'
-                    ppm={'15PPM/C'}
+                    ppm={'15'}
                     onBandPress={handleBandClickOnTable}
                     selectedBandCount={selectedBandCount}
                 />
@@ -324,7 +324,7 @@ export default function TabelaResistor() {
                     colorValued2='4'
                     colorValued3={'4'}
                     multiplier='10KΩ'
-                    ppm={'25PPM/C'}
+                    ppm={'25'}
                     onBandPress={handleBandClickOnTable}
                     selectedBandCount={selectedBandCount}
                 />
@@ -347,7 +347,7 @@ export default function TabelaResistor() {
                     colorValued3={'6'}
                     multiplier='1MΩ'
                     tolerance='±0.25%'
-                    ppm={'10PPM/C'}
+                    ppm={'10'}
                     onBandPress={handleBandClickOnTable}
                     selectedBandCount={selectedBandCount}
                 />
@@ -359,7 +359,7 @@ export default function TabelaResistor() {
                     colorValued3={'7'}
                     multiplier='10MΩ'
                     tolerance='±0.1%'
-                    ppm={'5PPM/C'}
+                    ppm={'5'}
                     onBandPress={handleBandClickOnTable}
                     selectedBandCount={selectedBandCount}
                 />
