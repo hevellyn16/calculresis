@@ -61,6 +61,14 @@ Certifique-se de ter o Node.js, npm (ou Yarn) e o Expo CLI instalados em sua má
     ```bash
     npx expo install --fix
     ```
+4.  **Configure o NativeWind:**
+    O NativeWind permite usar classes Tailwind CSS no React Native. Se ainda não estiver configurado, siga estes passos:
+    ```bash
+    npm install nativewind
+    npm install -D tailwindcss
+    npx tailwindcss init
+    ```
+    * **Importante:** Após a instalação, você precisará configurar o `tailwind.config.js` para incluir os caminhos dos seus arquivos e o `babel.config.js` conforme a documentação do NativeWind. Isso é essencial para que as classes Tailwind sejam processadas corretamente. Consulte a [documentação do NativeWind](https://www.nativewind.dev/docs/getting-started/installation) para mais detalhes sobre essa configuração inicial.
 
 ### Execução:
 
