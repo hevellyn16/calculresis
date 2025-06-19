@@ -8,38 +8,33 @@ import {
 
 type Props = {
   tailwindColorClass?: string;
-  colorName: string;
+
   colorValued1?: number | string;
   colorValued2?: number | string;
+  colorValued3?: number | string;
   textColorClass?: string;
   borderColorClass?: string;
   multiplier?: string | number;
   tolerance?: string;
+  ppm?: string | number;
 
-  onSelectValue?: (value:string, colorName:string, type:'d1'| 'd2' | 'multiplier' | 'tolerance') => void;
-  onBandPress?: (value: string | number | undefined, bandType: 'D1' | 'D2' | 'Multiplier' | 'Tolerance', bandColorClass: string) => void;
+  onSelectValue?: (value:string, colorName:string, type:'d1'| 'd2' | 'multiplier' | 'tolerance' | 'd3' | 'ppm') => void;
+  onBandPress?: (value: string | number | undefined, bandType: 'D1' | 'D2' | 'D3' | 'Multiplier' | 'Tolerance' | 'PPM', bandColorClass: string) => void;
 }
 
 export default function ResistorColorRow({
     tailwindColorClass,
-    colorName,
     colorValued1,
     colorValued2,
+    colorValued3,
     textColorClass,
     borderColorClass,
     multiplier,
     tolerance,
+    ppm,
     onSelectValue,
     onBandPress,
 }: Props) {
-
-    const nameView = (colorName === undefined || colorName === null) 
-    ? 'bg-transparent'
-    : (tailwindColorClass || 'bg-transparent');
-
-    const nameBorder = (colorName === undefined || colorName === null)
-    ? 'border-transparent'
-    : (borderColorClass || 'border-transparent');
 
     const toleranceView = (tolerance === undefined || tolerance === null) 
     ? 'bg-transparent'
@@ -73,21 +68,26 @@ export default function ResistorColorRow({
     ? 'border-transparent'
     : (borderColorClass || 'border-transparent');
 
+    const D3View = (colorValued3 === undefined || colorValued3 === null) 
+    ? 'bg-transparent'
+    : (tailwindColorClass || 'bg-transparent');
+
+    const D3Border = (colorValued3 === undefined || colorValued3 === null)
+    ? 'border-transparent'
+    : (borderColorClass || 'border-transparent');
+
+    const ppmView = (ppm === undefined || ppm === null)
+    ? 'bg-transparent'
+    : (tailwindColorClass || 'bg-transparent');
+
+    const ppmBorder = (ppm === undefined || ppm === null)
+    ? 'border-transparent'
+    : (borderColorClass || 'border-transparent');
+
 
 
   return (
     <View className="font-ubuntu gap-[11px] flex flex-row h-[30px] items-center mb-[1px] border border-transparent bg-white rounded-[5px]">
-
-        <View className={`
-    flex items-center justify-center
-    h-full w-[74px]
-    ${nameView} rounded-[5px]
-    border ${nameBorder}
-    `}>
-        <Text className={`font-bold text-xs ${textColorClass || 'text-white'}`}>
-            {colorName}
-        </Text>
-    </View>
 
         <TouchableOpacity 
     className={`
@@ -122,6 +122,23 @@ export default function ResistorColorRow({
             )}
     </TouchableOpacity>
 
+    <TouchableOpacity 
+    className={`
+    flex items-center justify-center
+    h-[30px] w-[33px]
+    py-[6px] px-[7px]
+    gap-[10px]
+    ${D3View} rounded-[5px]
+    border ${D3Border}
+    `}
+    onPress={() => onBandPress && onBandPress(colorValued3, 'D3', tailwindColorClass || 'bg-transparent')}>
+        {colorValued3 !== undefined && colorValued3 !== null && (
+                <Text className={`font-bold text-xs ${textColorClass || 'text-white'}`}>
+                    {colorValued3}
+                </Text>
+            )}
+    </TouchableOpacity>
+
         <TouchableOpacity 
     className={`
     flex items-center justify-center
@@ -150,6 +167,23 @@ export default function ResistorColorRow({
             {tolerance !== undefined && tolerance !== null && (
                 <Text className={`font-bold text-xs ${textColorClass || 'text-white'}`}>
                     {tolerance}
+                </Text>
+            )}
+    </TouchableOpacity>
+
+    <TouchableOpacity 
+    className={`
+    flex items-center justify-center
+    h-[30px] w-[33px]
+    py-[6px] px-[7px]
+    gap-[10px]
+    ${ppmView} rounded-[5px]
+    border ${ppmBorder}
+    `}
+    onPress={() => onBandPress && onBandPress(ppm, 'PPM', tailwindColorClass || 'bg-transparent')}>
+        {ppm !== undefined && ppm !== null && (
+                <Text className={`font-bold text-xs ${textColorClass || 'text-white'}`}>
+                    {ppm}
                 </Text>
             )}
     </TouchableOpacity>

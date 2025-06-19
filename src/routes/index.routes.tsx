@@ -3,7 +3,7 @@ import{
     createStackNavigator,
 } from "@react-navigation/stack";
 import TelaInicial from "~/screens/TelaInicial";
-import TabelaResistor from "~/screens/TabelaResistor";
+import TabelaResistor from "~/components/TabelaResistor";
 import ResistorCalcul from "~/screens/ResistorCalcul";
 
 export default function Routes() {
