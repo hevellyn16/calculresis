@@ -43,12 +43,12 @@ const toleranceValues: { [key: string]: string } = {
 };
 
 const ppmValues: { [key: string]: string } = {
-  '100PPM/C': '100PPM/C',
-  '50PPM/C': '50PPM/C',
-  '15PPM/C': '15PPM/C',
-  '25PPM/C': '25PPM/C',
-  '10PPM/C': '10PPM/C',
-  '5PPM/C': '5PPM/C',
+  '100': '100PPM/C',
+  '50': '50PPM/C',
+  '15': '15PPM/C',
+  '25': '25PPM/C',
+  '10': '10PPM/C',
+  '5': '5PPM/C',
 };
 
 export default function TabelaResistor() {
