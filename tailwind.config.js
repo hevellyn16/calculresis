@@ -10,9 +10,11 @@ module.exports = {
         
       },
       colors: {
-        'resistor-brown': '#CC3300',
-        'resistor-gold': '#F4EE00',  
-        'resistor-silver': '#B4B4B4',
+        resistor: {
+          'brown': '#CC3300',
+          'gold': '#F4EE00',
+          'silver': '#B4B4B4',
+        }
       },
     },
   },

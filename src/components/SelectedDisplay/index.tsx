@@ -43,27 +43,35 @@ export default function SelectedDisplay({
     console.log("  activeBand:", activeBand);
     console.log("  selectedBandCount:", selectedBandCount);
 
-  const renderBand = (data: BandData, bandType: BandType, isTolerance: boolean = false, isPPM: boolean = false, alwaysRender: boolean = false) => {
-    if (!alwaysRender && (data.value === undefined && data.colorClass === 'bg-transparent')) {
-      return null;
+  const renderBand = (data: BandData | undefined, bandType: BandType, isTolerance: boolean = false, isPPM: boolean = false) => {
+    if (bandType === 'D3' && !(selectedBandCount === '5' || selectedBandCount === '6')) return null;
+    if (bandType === 'PPM' && selectedBandCount !== '6') return null;
+
+    const effectiveData: BandData = data || { value: undefined, colorClass: 'bg-transparent' };
+
+    const actualColorClass = effectiveData.colorClass;
+
+    const actualValue = effectiveData.value !== undefined && effectiveData.value !== null ? effectiveData.value : '';
+
+    let widthClass;
+    if (isTolerance) {
+        widthClass = 'w-[66px]';
+    } else if (bandType === 'Multiplier') { 
+        widthClass = 'w-[58px]';
+    } else if (isPPM) { 
+        widthClass = 'w-[33px]'; 
+    } else {
+        widthClass = 'w-[33px]'; 
     }
-
-    const actualColorClass = data.colorClass; 
-
-
-    const actualValue = data.value !== undefined && data.value !== null ? data.value : '';
-
-    const widthClass = isTolerance ? 'w-[66px]' : (isPPM ? 'w-[66px]' : 'w-[33px]');
-
     const textColorClass = (actualColorClass === 'bg-black' || actualColorClass === 'bg-resistor-brown' || actualColorClass === 'bg-blue-500' || actualColorClass === 'bg-purple-500' || actualColorClass === 'bg-red-500' || actualColorClass === 'bg-gray-500')
       ? 'text-white'
       : 'text-black';
 
     const isActive = activeBand === bandType;
 
-    const activeBorderClass = isActive
-      ? 'border-2 border-orange-500'
-      : 'border border-gray-300'; // Sempre uma borda cinza para inativas
+   const activeBorderClass = isActive
+  ? 'border-transparent border-[1px]' // Borda para ativa
+  : 'border-transparent border-[1px]'; // Borda para inativa AGORA TRANSPARENTE
 
     return (
       <TouchableOpacity
@@ -71,8 +79,8 @@ export default function SelectedDisplay({
         className={`
           flex items-center justify-center
           h-[30px] ${widthClass}
-          py-[6px] px-[7px]
-          gap-[10px]
+          px-[7px]
+          py-[6px]
           ${actualColorClass} rounded-[5px] {/* Usar actualColorClass simples */}
           ${activeBorderClass}
         `}
@@ -89,14 +97,13 @@ export default function SelectedDisplay({
   };
 
   return (
-    <View className="py-2 flex flex-row items-center justify-center gap-[10px] mb-6 p-2 rounded-[5px] shadow-md shadow-black/30 bg-orange-300">
-      {renderBand(band1, 'D1', false, false, true)}
-      {renderBand(band2, 'D2', false, false, true)}
-      {renderBand(multiplier, 'Multiplier', false, false, true)}
-      {renderBand(tolerance, 'Tolerance', true, false, true)}
-      
-      {(selectedBandCount === '5' || selectedBandCount === '6') && band3 && renderBand(band3, 'D3')}
-      {selectedBandCount === '6' && ppm && renderBand(ppm, 'PPM', false, true)}
+    <View className=" flex flex-row items-center justify-center gap-[10px] mb-0 p-2 rounded-[5px] shadow-md shadow-black/30 bg-orange-300">
+      {renderBand(band1, 'D1')}
+      {renderBand(band2, 'D2')}
+      {renderBand(band3, 'D3')} 
+      {renderBand(multiplier, 'Multiplier')}
+      {renderBand(tolerance, 'Tolerance', true)}
+      {renderBand(ppm, 'PPM', false, true)}
     </View>
   );
 }

@@ -182,7 +182,7 @@ export default function ResistorColorRow({
             className={`
             flex items-center justify-center
             h-[30px] w-[33px]
-            py-[6px] px-[7px]
+            py-[6px] px-[1px]
             gap-[10px]
             ${ppmBgClass} rounded-[5px]
             border ${ppmBorderClass}
