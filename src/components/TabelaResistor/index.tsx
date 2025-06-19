@@ -12,8 +12,7 @@ import FasciaSelector from '~/components/FasciaSelector';
 import ResistorColorRow from '~/components/ResistorColorRow';
 import SelectedDisplay from '~/components/SelectedDisplay';
 
-
-type BandType = 'D1' | 'D2' | 'Multiplier' | 'Tolerance' | 'D3' | 'PPM' | null;
+type BandType = 'D1' | 'D2' | 'D3' | 'Multiplier' | 'Tolerance' | 'PPM' | null;
 
 export default function TabelaResistor() {
     const navigation = useNavigation<NavigationProp<any>>();
@@ -24,23 +23,16 @@ export default function TabelaResistor() {
     const [band1Data, setBand1Data] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
     const [band2Data, setBand2Data] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
     const [band3Data, setBand3Data] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
-    const [PPMData, setPPMData] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
+    const [ppmData, setPPMData] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
     const [multiplierData, setMultiplierData] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
     const [toleranceData, setToleranceData] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
 
    const handleCellSelection = (
         value: string | number | undefined,
-        bandTypeFromCell: 'D1' | 'D2' | 'Multiplier' | 'Tolerance',
+        bandTypeFromCell: 'D1' | 'D2' | 'D3' | 'Multiplier' | 'Tolerance' | 'PPM',
         bandColorClass: string
     ) => {
-        console.log("--- handleCellSelection Called ---");
-        console.log("Value clicked:", value);
-        console.log("Type from cell:", bandTypeFromCell);
-        console.log("Color class from cell (from cell click):", bandColorClass); // <-- IMPORTANTE
-        console.log("Current activeBand BEFORE update:", activeBand);
-
         if (!activeBand) {
-            console.log("No active band selected. Setting to D1 and returning.");
             setActiveBand('D1');
             return;
         }
@@ -50,46 +42,38 @@ export default function TabelaResistor() {
         switch (activeBand) {
             case 'D1':
                 setBand1Data({ value, colorClass: bandColorClass });
-                console.log("UPDATED band1Data:", { value, colorClass: bandColorClass }); // <-- ADICIONADO
                 nextActiveBand = (selectedBandCount === '3') ? 'Multiplier' : 'D2';
                 break;
             case 'D2':
                 setBand2Data({ value, colorClass: bandColorClass });
-                console.log("UPDATED band2Data:", { value, colorClass: bandColorClass }); // <-- ADICIONADO
                 nextActiveBand = (selectedBandCount === '5' || selectedBandCount === '6') ? 'D3' : 'Multiplier';
                 break;
             case 'D3':
                 setBand3Data({ value, colorClass: bandColorClass });
-                console.log("UPDATED band3Data:", { value, colorClass: bandColorClass }); // <-- ADICIONADO
                 nextActiveBand = 'Multiplier';
                 break;
             case 'Multiplier':
                 setMultiplierData({ value, colorClass: bandColorClass });
-                console.log("UPDATED multiplierData:", { value, colorClass: bandColorClass }); // <-- ADICIONADO
                 nextActiveBand = 'Tolerance';
                 break;
             case 'Tolerance':
                 setToleranceData({ value, colorClass: bandColorClass });
-                console.log("UPDATED toleranceData:", { value, colorClass: bandColorClass }); // <-- ADICIONADO
                 nextActiveBand = (selectedBandCount === '6') ? 'PPM' : null;
                 break;
             case 'PPM':
                 setPPMData({ value, colorClass: bandColorClass });
-                console.log("UPDATED ppmData:", { value, colorClass: bandColorClass }); // <-- ADICIONADO
                 nextActiveBand = null;
                 break;
             default:
-                console.log("Active band is not recognized or null:", activeBand);
                 break;
         }
         setActiveBand(nextActiveBand);
-        console.log("Next activeBand after update:", nextActiveBand);
     };
 
     const bandCountOptions = [
-        { label: '4 Bandas', value: '4' },
-        { label: '5 Bandas', value: '5' },
-        { label: '6 Bandas', value: '6' },
+        { label: '4 Faixas', value: '4' },
+        { label: '5 Faixas', value: '5' },
+        { label: '6 Faixas', value: '6' },
     ];
 
     async function handleNavigation(routeName: string) {
@@ -105,7 +89,6 @@ export default function TabelaResistor() {
     }
 
      useEffect(() => {
-        console.log("--- useEffect: selectedBandCount changed ---");
         setBand1Data({ value: undefined, colorClass: 'bg-transparent' });
         setBand2Data({ value: undefined, colorClass: 'bg-transparent' });
         setBand3Data({ value: undefined, colorClass: 'bg-transparent' });
@@ -115,17 +98,14 @@ export default function TabelaResistor() {
 
         if (selectedBandCount === '3' || selectedBandCount === '4' || selectedBandCount === '5' || selectedBandCount === '6') {
             setActiveBand('D1');
-            console.log("Active band set to D1 due to selectedBandCount change.");
         } else {
             setActiveBand(null);
         }
-        console.log("Current selectedBandCount:", selectedBandCount);
     }, [selectedBandCount]);
 
 
     return (
-        <SafeAreaView className="self-stretch flex flex-col gap-[10px] justify-between items-center w-full h-full py-10 px-7 bg-white">
-            {/* Botão de navegação para a tela inicial */} 
+        <SafeAreaView className="self-stretch flex flex-col justify-between items-center w-full h-full py-10 px-7 bg-white">
             <View>
                 <CustomButton
                     title={'Tabela de Resistência'}
@@ -134,7 +114,6 @@ export default function TabelaResistor() {
                 />
             </View>
 
-            {/* Resistor display */}
             <View className='self-stretch py-4 bg-white rounded-[10px] shadow-md shadow-black/50'>
                 <View className='self-stretch text-center justify-center text-black text-4xl font-bold font-ubuntu shadow-md shadow-black/50'>
                     <Text className="self-stretch text-center justify-center text-black text-base font-light font-ubuntu">
@@ -143,7 +122,6 @@ export default function TabelaResistor() {
                 </View>
             </View>
 
-            {/* Botôes selecionados*/}
             <View className='self-stretch py-2 gap-[5px]'>
                 <SelectedDisplay
                     band1={band1Data}
@@ -151,23 +129,21 @@ export default function TabelaResistor() {
                     band3={(selectedBandCount === '5' || selectedBandCount === '6') ? band3Data : undefined}
                     multiplier={multiplierData}
                     tolerance={toleranceData}
-                    ppm={selectedBandCount === '6' ? PPMData : undefined}
+                    ppm={selectedBandCount === '6' ? ppmData : undefined}
                     activeBand={activeBand}
                     onBandPress={setActiveBand}
                     selectedBandCount={selectedBandCount}
                 />
             </View>
 
-            {/* Conteúdo da tabela de resistores */}
-            <View className='flex flex-col self-stretch items-center justify-center gap-[16px] py-2 px-8 rounded-[5px] bg-white shadow-md shadow-black/50'> 
+            <View className='flex flex-col self-stretch items-center justify-center gap-[16px] py-2 px-8 rounded-[5px] bg-white shadow-md shadow-black/50'>
                 <View className='flex flex-row items-center justify-between gap-[10px]'>
                         <ResistorColorRow
-                        // colorName={'Cor'}
-                        tailwindColorClass='bg-transparent'
-                        textColorClass='text-black'
                         colorValued1={'D1'}
                         colorValued2={'D2'}
                         colorValued3={'D3'}
+                        tailwindColorClass='bg-transparent'
+                        textColorClass='text-black'
                         multiplier={'Mult.'}
                         tolerance={'Toleran.'}
                         ppm={'ppm'}
@@ -175,125 +151,121 @@ export default function TabelaResistor() {
                     </View>
                 <View className='flex flex-col items-center justify-center gap-[10px]'>
                     <ResistorColorRow
-                    // colorName={'preto'}
                     tailwindColorClass='bg-black'
                     colorValued1='0'
                     colorValued2='0'
                     colorValued3='0'
                     multiplier='1Ω'
-
+                    onBandPress={handleCellSelection}
                 />
                 <ResistorColorRow
                     tailwindColorClass='bg-resistor-brown'
-                    // colorName={'marrom'}
                     colorValued1='1'
                     colorValued2='1'
                     colorValued3='1'
                     multiplier='10Ω'
                     tolerance='±1%'
                     ppm={'100PPM/C'}
+                    onBandPress={handleCellSelection}
                 />
                  <ResistorColorRow
                     tailwindColorClass='bg-red-500'
-                    // colorName={'vermelho'}
                     colorValued1='2'
                     colorValued2='2'
                     colorValued3={'2'}
                     multiplier='100Ω'
                     tolerance='±2%'
                     ppm={'50PPM/C'}
+                    onBandPress={handleCellSelection}
                 />
 
                 <ResistorColorRow
                     tailwindColorClass='bg-orange-500'
-                    // colorName={'laranja'}
                     colorValued1='3'
                     colorValued2='3'
                     colorValued3={'3'}
                     multiplier='1KΩ'
                     ppm={'15PPM/C'}
+                    onBandPress={handleCellSelection}
                 />
-                
+
                 <ResistorColorRow
                     tailwindColorClass='bg-yellow-500'
-                    // colorName={'amarelo'}
                     colorValued1='4'
                     colorValued2='4'
                     colorValued3={'4'}
                     multiplier='10KΩ'
                     ppm={'25PPM/C'}
+                    onBandPress={handleCellSelection}
                 />
 
                 <ResistorColorRow
                     tailwindColorClass='bg-green-500'
-                    // colorName={'verde'}
                     colorValued1='5'
                     colorValued2='5'
                     colorValued3={'5'}
                     multiplier='100KΩ'
                     tolerance='±0.5%'
+                    onBandPress={handleCellSelection}
                 />
 
                 <ResistorColorRow
                     tailwindColorClass='bg-blue-500'
-                    // colorName={'azul'}
                     colorValued1='6'
                     colorValued2='6'
                     colorValued3={'6'}
                     multiplier='1MΩ'
                     tolerance='±0.25%'
                     ppm={'10PPM/C'}
+                    onBandPress={handleCellSelection}
                 />
 
                 <ResistorColorRow
                     tailwindColorClass='bg-purple-500'
-                    // colorName={'violeta'}
                     colorValued1='7'
                     colorValued2='7'
                     colorValued3={'7'}
                     multiplier='10MΩ'
                     tolerance='±0.1%'
                     ppm={'5PPM/C'}
+                    onBandPress={handleCellSelection}
                 />
 
                 <ResistorColorRow
                     tailwindColorClass='bg-gray-500'
-                    // colorName={'cinza'}
                     colorValued1='8'
                     colorValued2='8'
-                     colorValued3={'8'}
-                     multiplier='100MΩ'
+                    colorValued3={'8'}
+                    multiplier='100MΩ'
+                    onBandPress={handleCellSelection}
                 />
                 <ResistorColorRow
                     tailwindColorClass='bg-white'
-                    // colorName={'branco'}
                     colorValued1='9'
                     colorValued2='9'
                     colorValued3={'9'}
                     borderColorClass='border-black'
                     textColorClass='text-black'
+                    onBandPress={handleCellSelection}
                 />
 
                  <ResistorColorRow
                     tailwindColorClass='bg-resistor-gold'
-                    // colorName={'ouro'}
-                    multiplier='10MΩ'
-                    tolerance='±0.1%'
+                    multiplier='0.1Ω'
+                    tolerance='±5%'
                     textColorClass='text-black'
+                    onBandPress={handleCellSelection}
                 />
                  <ResistorColorRow
                     tailwindColorClass='bg-resistor-silver'
-                    // colorName={'prata'}
-                    multiplier='10MΩ'
-                    tolerance='±0.1%'
+                    multiplier='0.01Ω'
+                    tolerance='±10%'
                     textColorClass='text-black'
+                    onBandPress={handleCellSelection}
                 />
-                
-
                 </View>
             </View>
 
-            {/* Selecionar as cores dos resistores */}
             <View  className='flex flex-col self-stretch items-center justify-center py-3 px-9 rounded-[5px] bg-white shadow-md shadow-black/50'>
                 <FasciaSelector
                     label="Quantidade de Faixas"
