@@ -146,123 +146,112 @@ export default function TabelaResistor() {
                         textColorClass='text-black'
                         multiplier={'Mult.'}
                         tolerance={'Toleran.'}
-                        ppm={'ppm'}
-                    />
+                        ppm={'ppm'} 
+                        selectedBandCount={selectedBandCount}                    />
                     </View>
                 <View className='flex flex-col items-center justify-center gap-[10px]'>
                     <ResistorColorRow
-                    tailwindColorClass='bg-black'
-                    colorValued1='0'
-                    colorValued2='0'
-                    colorValued3='0'
-                    multiplier='1Ω'
-                    onBandPress={handleCellSelection}
-                />
+                        tailwindColorClass='bg-black'
+                        colorValued1='0'
+                        colorValued2='0'
+                        colorValued3='0'
+                        multiplier='1Ω'
+                        onBandPress={handleCellSelection} selectedBandCount={selectedBandCount}                />
                 <ResistorColorRow
-                    tailwindColorClass='bg-resistor-brown'
-                    colorValued1='1'
-                    colorValued2='1'
-                    colorValued3='1'
-                    multiplier='10Ω'
-                    tolerance='±1%'
-                    ppm={'100PPM/C'}
-                    onBandPress={handleCellSelection}
-                />
+                        tailwindColorClass='bg-resistor-brown'
+                        colorValued1='1'
+                        colorValued2='1'
+                        colorValued3='1'
+                        multiplier='10Ω'
+                        tolerance='±1%'
+                        ppm={'100PPM/C'}
+                        onBandPress={handleCellSelection} selectedBandCount={selectedBandCount}                />
                  <ResistorColorRow
-                    tailwindColorClass='bg-red-500'
-                    colorValued1='2'
-                    colorValued2='2'
-                    colorValued3={'2'}
-                    multiplier='100Ω'
-                    tolerance='±2%'
-                    ppm={'50PPM/C'}
-                    onBandPress={handleCellSelection}
-                />
+                        tailwindColorClass='bg-red-500'
+                        colorValued1='2'
+                        colorValued2='2'
+                        colorValued3={'2'}
+                        multiplier='100Ω'
+                        tolerance='±2%'
+                        ppm={'50PPM/C'}
+                        onBandPress={handleCellSelection} selectedBandCount={selectedBandCount}                />
 
                 <ResistorColorRow
-                    tailwindColorClass='bg-orange-500'
-                    colorValued1='3'
-                    colorValued2='3'
-                    colorValued3={'3'}
-                    multiplier='1KΩ'
-                    ppm={'15PPM/C'}
-                    onBandPress={handleCellSelection}
-                />
+                        tailwindColorClass='bg-orange-500'
+                        colorValued1='3'
+                        colorValued2='3'
+                        colorValued3={'3'}
+                        multiplier='1KΩ'
+                        ppm={'15PPM/C'}
+                        onBandPress={handleCellSelection} selectedBandCount={selectedBandCount}                />
 
                 <ResistorColorRow
-                    tailwindColorClass='bg-yellow-500'
-                    colorValued1='4'
-                    colorValued2='4'
-                    colorValued3={'4'}
-                    multiplier='10KΩ'
-                    ppm={'25PPM/C'}
-                    onBandPress={handleCellSelection}
-                />
+                        tailwindColorClass='bg-yellow-500'
+                        colorValued1='4'
+                        colorValued2='4'
+                        colorValued3={'4'}
+                        multiplier='10KΩ'
+                        ppm={'25PPM/C'}
+                        onBandPress={handleCellSelection} selectedBandCount={selectedBandCount}                />
 
                 <ResistorColorRow
-                    tailwindColorClass='bg-green-500'
-                    colorValued1='5'
-                    colorValued2='5'
-                    colorValued3={'5'}
-                    multiplier='100KΩ'
-                    tolerance='±0.5%'
-                    onBandPress={handleCellSelection}
-                />
+                        tailwindColorClass='bg-green-500'
+                        colorValued1='5'
+                        colorValued2='5'
+                        colorValued3={'5'}
+                        multiplier='100KΩ'
+                        tolerance='±0.5%'
+                        onBandPress={handleCellSelection} selectedBandCount={selectedBandCount}                />
 
                 <ResistorColorRow
-                    tailwindColorClass='bg-blue-500'
-                    colorValued1='6'
-                    colorValued2='6'
-                    colorValued3={'6'}
-                    multiplier='1MΩ'
-                    tolerance='±0.25%'
-                    ppm={'10PPM/C'}
-                    onBandPress={handleCellSelection}
-                />
+                        tailwindColorClass='bg-blue-500'
+                        colorValued1='6'
+                        colorValued2='6'
+                        colorValued3={'6'}
+                        multiplier='1MΩ'
+                        tolerance='±0.25%'
+                        ppm={'10PPM/C'}
+                        onBandPress={handleCellSelection} selectedBandCount={selectedBandCount}                />
 
                 <ResistorColorRow
-                    tailwindColorClass='bg-purple-500'
-                    colorValued1='7'
-                    colorValued2='7'
-                    colorValued3={'7'}
-                    multiplier='10MΩ'
-                    tolerance='±0.1%'
-                    ppm={'5PPM/C'}
-                    onBandPress={handleCellSelection}
-                />
+                        tailwindColorClass='bg-purple-500'
+                        colorValued1='7'
+                        colorValued2='7'
+                        colorValued3={'7'}
+                        multiplier='10MΩ'
+                        tolerance='±0.1%'
+                        ppm={'5PPM/C'}
+                        onBandPress={handleCellSelection} selectedBandCount={selectedBandCount}                />
 
                 <ResistorColorRow
-                    tailwindColorClass='bg-gray-500'
-                    colorValued1='8'
-                    colorValued2='8'
-                    colorValued3={'8'}
-                    multiplier='100MΩ'
-                    onBandPress={handleCellSelection}
-                />
+                        tailwindColorClass='bg-gray-500'
+                        colorValued1='8'
+                        colorValued2='8'
+                        colorValued3={'8'}
+                        multiplier='100MΩ'
+                        onBandPress={handleCellSelection} selectedBandCount={selectedBandCount}                />
                 <ResistorColorRow
-                    tailwindColorClass='bg-white'
-                    colorValued1='9'
-                    colorValued2='9'
-                    colorValued3={'9'}
-                    borderColorClass='border-black'
-                    textColorClass='text-black'
-                    onBandPress={handleCellSelection}
-                />
+                        tailwindColorClass='bg-white'
+                        colorValued1='9'
+                        colorValued2='9'
+                        colorValued3={'9'}
+                        borderColorClass='border-black'
+                        textColorClass='text-black'
+                        onBandPress={handleCellSelection} selectedBandCount={selectedBandCount}                />
 
                  <ResistorColorRow
-                    tailwindColorClass='bg-resistor-gold'
-                    multiplier='0.1Ω'
-                    tolerance='±5%'
-                    textColorClass='text-black'
-                    onBandPress={handleCellSelection}
-                />
+                        tailwindColorClass='bg-resistor-gold'
+                        multiplier='0.1Ω'
+                        tolerance='±5%'
+                        textColorClass='text-black'
+                        onBandPress={handleCellSelection} selectedBandCount={selectedBandCount}                />
+
                  <ResistorColorRow
-                    tailwindColorClass='bg-resistor-silver'
-                    multiplier='0.01Ω'
-                    tolerance='±10%'
-                    textColorClass='text-black'
-                    onBandPress={handleCellSelection}
-                />
+                        tailwindColorClass='bg-resistor-silver'
+                        multiplier='0.01Ω'
+                        tolerance='±10%'
+                        textColorClass='text-black'
+                        onBandPress={handleCellSelection} selectedBandCount={selectedBandCount}                />
                 </View>
             </View>
 

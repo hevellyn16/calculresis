@@ -19,6 +19,7 @@ type Props = {
 
   onSelectValue?: (value:string, colorName:string, type:'d1'| 'd2' | 'multiplier' | 'tolerance' | 'd3' | 'ppm') => void;
   onBandPress?: (value: string | number | undefined, bandType: 'D1' | 'D2' | 'D3' | 'Multiplier' | 'Tolerance' | 'PPM', bandColorClass: string) => void;
+  selectedBandCount: string | number;
 }
 
 export default function ResistorColorRow({
@@ -33,6 +34,7 @@ export default function ResistorColorRow({
     ppm,
     onSelectValue,
     onBandPress,
+    selectedBandCount
 }: Props) {
 
     const toleranceBgClass = (tolerance === undefined || tolerance === null)
@@ -82,7 +84,7 @@ export default function ResistorColorRow({
     const ppmBorderClass = (ppm === undefined || ppm === null)
     ? 'border-transparent'
     : (borderColorClass || 'border-transparent');
-    
+
   return (
     <View className="font-ubuntu gap-[11px] flex flex-row h-[30px] items-center mb-[1px] border border-transparent bg-white rounded-[5px]">
 
@@ -120,22 +122,25 @@ export default function ResistorColorRow({
             )}
     </TouchableOpacity>
 
-    <TouchableOpacity
-    className={`
-    flex items-center justify-center
-    h-[30px] w-[33px]
-    py-[6px] px-[7px]
-    gap-[10px]
-    ${D3BgClass} rounded-[5px]
-    border ${D3BorderClass}
-    `}
-    onPress={() => onBandPress && onBandPress(colorValued3, 'D3', tailwindColorClass || 'bg-transparent')}>
-        {colorValued3 !== undefined && colorValued3 !== null && (
-                <Text className={`font-bold text-xs ${textColorClass || 'text-white'}`}>
-                    {colorValued3}
-                </Text>
-            )}
-    </TouchableOpacity>
+     {/* Renderização Condicional D3 */}
+        {(selectedBandCount === '5' || selectedBandCount === '6') && ( // D3 aparece para 5 e 6 faixas
+            <TouchableOpacity
+                className={`
+                flex items-center justify-center
+                h-[30px] w-[33px]
+                py-[6px] px-[7px]
+                gap-[10px]
+                ${D3BgClass} rounded-[5px]
+                border ${D3BorderClass}
+                `}
+                onPress={() => onBandPress && onBandPress(colorValued3, 'D3', tailwindColorClass || 'bg-transparent')}>
+                {colorValued3 !== undefined && colorValued3 !== null && (
+                        <Text className={`font-bold text-xs ${textColorClass || 'text-white'}`}>
+                            {colorValued3}
+                        </Text>
+                    )}
+            </TouchableOpacity>
+        )}
 
         <TouchableOpacity
     className={`
@@ -171,22 +176,25 @@ export default function ResistorColorRow({
             )}
     </TouchableOpacity>
 
-    <TouchableOpacity
-    className={`
-    flex items-center justify-center
-    h-[30px] w-[33px]
-    py-[6px] px-[7px]
-    gap-[10px]
-    ${ppmBgClass} rounded-[5px]
-    border ${ppmBorderClass}
-    `}
-    onPress={() => onBandPress && onBandPress(ppm, 'PPM', tailwindColorClass || 'bg-transparent')}>
-        {ppm !== undefined && ppm !== null && (
-                <Text className={`font-bold text-xs ${textColorClass || 'text-white'}`}>
-                    {ppm}
-                </Text>
-            )}
-    </TouchableOpacity>
+     {/* Renderização Condicional PPM */}
+    {selectedBandCount === '6' && ( // PPM aparece apenas para 6 faixas
+        <TouchableOpacity
+            className={`
+            flex items-center justify-center
+            h-[30px] w-[33px]
+            py-[6px] px-[7px]
+            gap-[10px]
+            ${ppmBgClass} rounded-[5px]
+            border ${ppmBorderClass}
+            `}
+            onPress={() => onBandPress && onBandPress(ppm, 'PPM', tailwindColorClass || 'bg-transparent')}>
+            {ppm !== undefined && ppm !== null && (
+                    <Text className={`font-bold text-xs ${textColorClass || 'text-white'}`}>
+                        {ppm}
+                    </Text>
+                )}
+        </TouchableOpacity>
+    )}
 
     </View>
   );
