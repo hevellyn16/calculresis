@@ -56,7 +56,7 @@ export default function FasciaSelector({
             className={`
             flex flex-row items-center justify-between
             bg-white rounded-[5px]
-            py-[10px] px-[15px]
+            px-[15px]
             shadow-md shadow-black/20
             h-[50px]
             ${fieldClassName || ''}
@@ -82,13 +82,13 @@ export default function FasciaSelector({
           activeOpacity={1} // Garante que o clique não "vaze" para os elementos subjacentes
         >
           {/* View interna do modal que contém a FlatList das opções */}
-          <View className="bg-white rounded-[5px] w-4/5 max-h-2/3 shadow-lg shadow-black/40 p-2">
+          <View className="bg-white rounded-[5px] w-4/5 max-h-2/3 shadow-lg shadow-black/40 p-1">
             <FlatList
               data={options}
               keyExtractor={(item) => String(item.value)} 
               renderItem={({ item }) => (
                 <TouchableOpacity
-                  className={`py-[10px] px-[15px] ${dropdownClassName || ''}`}
+                  className={`py-[8px] px-[15px] ${dropdownClassName || ''}`}
                   onPress={() => handleSelect(item.value)} 
                 >
                   <Text className="text-black text-base">

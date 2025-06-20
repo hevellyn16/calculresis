@@ -14,6 +14,7 @@ module.exports = {
           'brown': '#CC3300',
           'gold': '#F4EE00',
           'silver': '#B4B4B4',
+          'tableDisplay': '#D2AE6D',
         }
       },
     },

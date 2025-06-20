@@ -81,7 +81,7 @@ export default function SelectedDisplay({
           h-[30px] ${widthClass}
           px-[7px]
           py-[6px]
-          ${actualColorClass} rounded-[5px] {/* Usar actualColorClass simples */}
+          ${actualColorClass} rounded-[5px]
           ${activeBorderClass}
         `}
         onPress={() => onBandPress(bandType)}
@@ -97,7 +97,7 @@ export default function SelectedDisplay({
   };
 
   return (
-    <View className=" flex flex-row items-center justify-center gap-[10px] mb-0 p-2 rounded-[5px] shadow-md shadow-black/30 bg-orange-300">
+    <View className=" flex flex-row items-center justify-center gap-[10px] mb-0 p-2 rounded-[5px] shadow-md shadow-black/30 bg-resistor-tableDisplay">
       {renderBand(band1, 'D1')}
       {renderBand(band2, 'D2')}
       {renderBand(band3, 'D3')} 
