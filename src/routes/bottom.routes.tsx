@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ResistorCalcul from '~/screens/ResistorCalcul';
-import TabelaResistor from '~/components/TabelaResistor';
+import TabelaResistor from '~/screens/TabelaResistor';
 import TelaInicial from '~/screens/TelaInicial';
 
 const Tab = createBottomTabNavigator();

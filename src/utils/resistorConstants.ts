@@ -5,7 +5,7 @@ export const bandValues: { [key: string]: number } = {
 };
 
 export const multiplierValues: { [key: string]: number } = {
-  '1Ω': 1, '10Ω': 10, '100Ω': 100, '1KΩ': 1000, '10KΩ': 10000, '100KΩ': 100000, '1MΩ': 1000000, '10MΩ': 10000000, '100MΩ': 100000000, '0.1Ω': 0.1, '0.01Ω': 0.01,
+  '1Ω': 1, '10Ω': 10, '100Ω': 100, '1KΩ': 1000, '10KΩ': 10000, '100KΩ': 100000, '1MΩ': 1000000, '0.1Ω': 0.1, '0.01Ω': 0.01,
 };
 
 export const toleranceValues: { [key: string]: string } = {

@@ -26,7 +26,6 @@ export default function ResistorColorTable({ onBandPress, selectedBandCount }: P
         colorValued2='1'
         colorValued3='1'
         multiplier='10Ω'
-        tolerance='±1%'
         ppm={'100'}
         onBandPress={onBandPress}
         selectedBandCount={selectedBandCount}
@@ -37,7 +36,7 @@ export default function ResistorColorTable({ onBandPress, selectedBandCount }: P
         colorValued2='2'
         colorValued3={'2'}
         multiplier='100Ω'
-        tolerance='±2%'
+        tolerance='±1%'
         ppm={'50'}
         onBandPress={onBandPress}
         selectedBandCount={selectedBandCount}
@@ -48,6 +47,7 @@ export default function ResistorColorTable({ onBandPress, selectedBandCount }: P
         colorValued2='3'
         colorValued3={'3'}
         multiplier='1KΩ'
+        tolerance='±2%'
         ppm={'15'}
         onBandPress={onBandPress}
         selectedBandCount={selectedBandCount}
@@ -88,7 +88,6 @@ export default function ResistorColorTable({ onBandPress, selectedBandCount }: P
         colorValued1='7'
         colorValued2='7'
         colorValued3={'7'}
-        multiplier='10MΩ'
         tolerance='±0.1%'
         ppm={'5'}
         onBandPress={onBandPress}
@@ -99,7 +98,6 @@ export default function ResistorColorTable({ onBandPress, selectedBandCount }: P
         colorValued1='8'
         colorValued2='8'
         colorValued3={'8'}
-        multiplier='100MΩ'
         onBandPress={onBandPress}
         selectedBandCount={selectedBandCount}
       />

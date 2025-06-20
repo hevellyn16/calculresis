@@ -28,12 +28,29 @@ export default function TabelaResistor() {
     const [selectedBandCount, setSelectedBandCount] = useState<string | number>('4');
 
     const [activeBand, setActiveBand] = useState<BandType>('D1');
-    const [band1Data, setBand1Data] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
-    const [band2Data, setBand2Data] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
-    const [band3Data, setBand3Data] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
-    const [multiplierData, setMultiplierData] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
-    const [toleranceData, setToleranceData] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
-    const [ppmData, setPPMData] = useState<{ value: string | number | undefined; colorClass: string }>({ value: undefined, colorClass: 'bg-transparent' });
+    const [band1Data, setBand1Data] = useState<{
+        value: string | number | undefined; colorClass: string }>({ 
+        value: undefined, colorClass: 'bg-transparent' });
+
+    const [band2Data, setBand2Data] = useState<{ 
+        value: string | number | undefined; colorClass: string }>({ 
+        value: undefined, colorClass: 'bg-transparent' });
+
+    const [band3Data, setBand3Data] = useState<{ 
+        value: string | number | undefined; colorClass: string }>({ 
+        value: undefined, colorClass: 'bg-transparent' });
+
+    const [multiplierData, setMultiplierData] = useState<{ 
+        value: string | number | undefined; colorClass: string }>({ 
+        value: undefined, colorClass: 'bg-transparent' });
+
+    const [toleranceData, setToleranceData] = useState<{ 
+        value: string | number | undefined; colorClass: string }>({ 
+        value: undefined, colorClass: 'bg-transparent' });
+
+    const [ppmData, setPPMData] = useState<{ 
+        value: string | number | undefined; colorClass: string }>({ 
+        value: undefined, colorClass: 'bg-transparent' });
 
     const handleBandClickOnTable = (
         value: string | number | undefined,
@@ -155,14 +172,14 @@ export default function TabelaResistor() {
             }
             resistanceValue = (d1 * 10 + d2) * multiplier;
             baseDigits = `${d1}${d2}`;
-            displayDetails.push(`${baseDigits} * ${multiplierData.value}`); // Ex: 12 * 10Ω
+            displayDetails.push(`${baseDigits} * ${multiplierData.value}`); 
         } else {
             if (d2 === undefined || d3 === undefined) {
                  return { resistance: '--- Ω', tolerance: '---', ppm: '---', details: 'Selecione D2 e D3' };
             }
             resistanceValue = (d1 * 100 + d2 * 10 + d3) * multiplier;
             baseDigits = `${d1}${d2}${d3}`;
-            displayDetails.push(`${baseDigits} * ${multiplierData.value}`); // Ex: 123 * 10Ω
+            displayDetails.push(`${baseDigits} * ${multiplierData.value}`); 
         };
 
         finalTolerance = tolerance || '---';
@@ -227,7 +244,9 @@ export default function TabelaResistor() {
                 />
             </View>
 
-            <View className='flex flex-col self-stretch items-center justify-center gap-[10px] py-2 px-5 rounded-[5px] bg-white shadow-md shadow-black/50 mt-1'>
+            <View className='flex flex-col self-stretch items-center justify-center
+             gap-[10px] py-2 px-5 rounded-[5px] bg-white shadow-md shadow-black/50 mt-1'>
+
                 <View className='flex flex-row items-center justify-center gap-[8px] mt-1'>
                         <ResistorColorRow
                         colorValued1={'D1'}
@@ -249,7 +268,8 @@ export default function TabelaResistor() {
                 
             </View>
 
-            <View  className='flex flex-col self-stretch items-center justify-center py-2 px-9 rounded-[5px] bg-white shadow-md shadow-black/50'>
+            <View  className='flex flex-col self-stretch items-center 
+            justify-center py-2 px-9 rounded-[5px] bg-white shadow-md shadow-black/50'>
                 <FasciaSelector
                     label="Quantidade de Faixas"
                     options={bandCountOptions}

@@ -15,6 +15,7 @@ module.exports = {
           'gold': '#F4EE00',
           'silver': '#B4B4B4',
           'tableDisplay': '#D2AE6D',
+          'gray': '#B4B4B4',
         }
       },
     },
